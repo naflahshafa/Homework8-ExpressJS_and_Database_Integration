@@ -9,13 +9,15 @@ const findAllCategory = async () => {
     }
 };
 
-const findCategoryById = async (category_id) => {
+const findFilmByCategoryId = async (category_id) => {
     try {
-        const result = await pool.query('SELECT * FROM category WHERE category_id = $1', [category_id]);
+        const result = await pool.query(`
+            SELECT film.* FROM film INNER JOIN film_category ON film.film_id = film_category.film_id WHERE film_category.category_id = $1`, [category_id]);
         return result.rows;
     } catch (error) {
         throw error;
     }
 };
 
-module.exports = {findAllCategory, findCategoryById};
+
+module.exports = {findAllCategory, findFilmByCategoryId};

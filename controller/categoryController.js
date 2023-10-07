@@ -10,10 +10,10 @@ const findAllCategory = async (request, response) => {
     }
 };
 
-const findCategoryById = async (request, response) => {
+const findFilmByCategoryId = async (request, response) => {
     const category_id = parseInt(request.params.category_id);
     try {
-        const category = await categoryModel.findCategoryById(category_id);
+        const category = await categoryModel.findFilmByCategoryId(category_id);
         response.status(200).json(category);
     } catch (err) {
         response.status(500).json({ error: 'Internal Server Error' });
@@ -21,4 +21,4 @@ const findCategoryById = async (request, response) => {
 };
 
 
-module.exports = {findAllCategory, findCategoryById};
+module.exports = {findAllCategory, findFilmByCategoryId};
